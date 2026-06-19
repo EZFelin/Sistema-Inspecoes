@@ -5,15 +5,18 @@ O projeto Sistema de Inspeção de Equipamentos visa simular o processo de inspe
 ## Tecnologias que serão utilizadas:
 
 Frontend
+
     1. HTML5
     2. CSS3
     3. JAVASCRIPT
 
 Backend
+
     1. Python
     2. Flask
 
 Database
+
     1.PostgreSQL
 
 Ferramentas de desenvolvimento
