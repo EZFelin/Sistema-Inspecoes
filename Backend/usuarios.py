@@ -1,4 +1,4 @@
-from Backend.conexao import conectar
+from conexao import conectar
 
 def cadastrar_usuario():
     conexao = conectar()

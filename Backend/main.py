@@ -1,12 +1,32 @@
-from Backend.conexao import conectar
-from Backend.usuarios import cadastrar_usuario, listar_usuarios
+from usuarios import cadastrar_usuario, listar_usuarios
+from equipamentos import cadastrar_equipamento, listar_equipamentos
 
-print("1 - Cadastrar usuário")
-print("2 - Listar usuários")
+while True:
 
-opcao = input("Escolha: ")
+    print("\n===== Sistema de Inspeções =====")
+    print("1 - Cadastrar equipamento")
+    print("2 - Listar equipamentos")
+    print("3 - Cadastrar usuário")
+    print("4 - Listar usuários")
+    print("0 - Sair")
 
-if opcao == "1":
-    cadastrar_usuario()
-elif opcao == "2":
-    listar_usuarios()
+    opcao = input("Escolha: ")
+
+    if opcao == "1":
+        cadastrar_equipamento()
+
+    elif opcao == "2":
+        listar_equipamentos()
+
+    elif opcao == "3":
+        cadastrar_usuario()
+
+    elif opcao == "4":
+        listar_usuarios()
+
+    elif opcao == "0":
+        print("Encerrando sistema...")
+        break
+
+    else:
+        print("Opção inválida.")

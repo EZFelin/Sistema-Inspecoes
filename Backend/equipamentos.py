@@ -1,4 +1,30 @@
-from Backend.conexao import conectar
+from conexao import conectar
+
+def cadastrar_equipamento():
+    conexao = conectar()
+
+    cursor = conexao.cursor()
+
+    nome = input("Nome: ")
+    setor = input("Setor: ")
+    descricao = input("Descrição: ")
+
+
+    cursor.execute(
+        """
+        INSERT INTO equipamentos
+        (nome, setor, descricao)
+        VALUES (%s, %s, %s)
+        """,
+        (nome, setor, descricao)
+    )
+
+    conexao.commit()
+
+    print("Equipamento cadastrado com sucesso!")
+
+    cursor.close()
+    conexao.close()
 
 def listar_equipamentos():
     conexao = conectar()
