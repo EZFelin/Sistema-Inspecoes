@@ -49,4 +49,3 @@ def listar_equipamentos():
     cursor.close()
     conexao.close()
 
-listar_equipamentos()
