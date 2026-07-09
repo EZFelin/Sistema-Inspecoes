@@ -6,6 +6,23 @@
     <title>Listar Usuários</title>
 </head>
 <body>
-    
+    <table>
+    <tr>
+        <th>Nome</th>
+        <th>Setor</th>
+        <th>Contato</th>
+        <th>Email</th>
+    </tr>
+
+    {% for usuario in usuarios %}
+    <tr>
+        <td>{{ usuario[0] }}</td>
+        <td>{{ usuario[1] }}</td>
+        <td>{{ usuario[2] }}</td>
+        <td>{{ usuario[3] }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
 </body>
 </html>

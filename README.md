@@ -13,7 +13,7 @@ Frontend
 Backend
 
     1. Python
-    2. Flask
+    2. Flask(Conceito Jinja2)
 
 Database
 

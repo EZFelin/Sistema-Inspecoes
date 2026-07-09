@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from Backend.usuarios import cadastrar_usuario as salvar_usuario
+from Backend.usuarios import cadastrar_usuario as salvar_usuario, listar_usuarios as obter_usuarios
 
 app = Flask(__name__)
 
@@ -29,7 +29,8 @@ def pagina_cadastrar_usuario():
 
 @app.route("/usuarios/listar")
 def listar_usuarios():
-    return render_template("listar_usuarios.html")
+    usuarios = obter_usuarios()
+    return render_template("listar_usuarios.html", usuarios=usuarios)
 
 @app.route("/equipamentos/cadastrar")
 def cadastrar_equipamento():

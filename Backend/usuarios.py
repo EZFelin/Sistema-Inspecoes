@@ -28,22 +28,15 @@ def listar_usuarios():
     cursor = conexao.cursor()
 
     cursor.execute("""
-        SELECT nome, setor, email
+        SELECT nome, setor, contato, email
         FROM usuarios
     """)
 
     usuarios = cursor.fetchall()
-    if not usuarios:
-        print("Nenhum usuário cadastrado.")
-    else:
-        for usuario in usuarios:
-            print(f"Nome: {usuario[0]}")
-            print(f"Setor: {usuario[1]}")
-            print(f"E-mail: {usuario[2]}")
-            print("-" * 20)
 
     cursor.close()
     conexao.close()
+    return usuarios
 
 def buscar_usuario_por_nome(nome):
     conexao = conectar()
