@@ -1,8 +1,9 @@
 from flask import Flask,render_template,request
+from Backend.usuarios import cadastrar_usuario as salvar_usuario
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/") 
 def home():
     return render_template("index.html")
 
@@ -15,15 +16,15 @@ def equipamentos():
     return render_template("equipamentos.html")
 
 @app.route("/usuarios/cadastrar", methods=["GET", "POST"])
-def cadastrar_usuario():
+def pagina_cadastrar_usuario():
     if request.method == "POST":
         nome = request.form["nome"]
         setor = request.form["setor"]
+        contato = request.form["contato"]
         email = request.form["email"]
-        
-        print(nome)
-        print(setor)
-        print(email)
+        senha = request.form["senha"]
+
+        salvar_usuario(nome, setor, contato, email, senha)
     return render_template("cadastrar_usuario.html")
 
 @app.route("/usuarios/listar")

@@ -1,15 +1,9 @@
-from conexao import conectar
+from Backend.conexao import conectar
 
-def cadastrar_usuario():
+def cadastrar_usuario(nome, setor, contato, email, senha):
     conexao = conectar()
 
     cursor = conexao.cursor()
-
-    nome = input("Nome: ")
-    setor = input("Setor: ")
-    contato = input("Contato: ")
-    email = input("Email: ")
-    senha = input("Senha: ")
 
     cursor.execute(
         """
