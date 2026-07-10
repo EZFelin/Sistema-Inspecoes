@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect
-from Backend.usuarios import atualizar_usuario, cadastrar_usuario as salvar_usuario, listar_usuarios as obter_usuarios, buscar_usuario_por_id as obter_usuario_por_id
+from Backend.usuarios import atualizar_usuario, cadastrar_usuario as salvar_usuario, listar_usuarios as obter_usuarios, buscar_usuario_por_id as obter_usuario_por_id, deletar_usuario as excluir_usuario
+import psycopg2
 
 app = Flask(__name__)
 
@@ -46,6 +47,19 @@ def editar_usuario(id_usuario):
     usuario = obter_usuario_por_id(id_usuario)
     return render_template("editar_usuario.html", usuario=usuario)
 
+@app.route("/usuarios/deletar/<int:id_usuario>", methods=["POST"])
+def deletar_usuario(id_usuario):
+    try:
+        excluir_usuario(id_usuario)
+        return redirect("/usuarios/listar")
+
+    except psycopg2.errors.ForeignKeyViolation:
+        return """
+        <script>
+            alert("Este usuário possui uma ou mais inspeções cadastradas e não pode ser excluído.");
+            window.location.href = "/usuarios/listar";
+        </script>
+        """
 
 @app.route("/equipamentos/cadastrar")
 def cadastrar_equipamento():

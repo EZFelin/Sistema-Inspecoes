@@ -91,3 +91,17 @@ def atualizar_usuario(id_usuario, nome, setor, contato, email, senha):
 
     cursor.close()
     conexao.close()
+
+def deletar_usuario(id_usuario):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        DELETE FROM usuarios
+        WHERE id_usuario = %s
+    """, (id_usuario,))
+
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
