@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuário</title>
+</head>
+<body>
+
+    <h1>Editar Usuário</h1>
+
+    <form action="/usuarios/editar/{{ usuario[0] }}" method="POST">
+
+        <label>Nome:</label>
+        <input type="text" name="nome" value="{{ usuario[1] }}" required>
+
+        <br><br>
+
+        <label>Setor:</label>
+        <input type="text" name="setor" value="{{ usuario[2] }}" required>
+
+        <br><br>
+
+        <label>Contato:</label>
+        <input type="text" name="contato" value="{{ usuario[3] }}" required>
+
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ usuario[4] }}" required>
+
+        <br><br>
+
+        <label>Senha:</label>
+        <input type="password" name="senha" value="{{ usuario[5] }}" required>
+
+        <br><br>
+
+        <button type="submit">Salvar Alterações</button>
+
+    </form>
+
+</body>
+</html>

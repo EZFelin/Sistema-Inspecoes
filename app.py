@@ -1,5 +1,5 @@
-from flask import Flask,render_template,request
-from Backend.usuarios import cadastrar_usuario as salvar_usuario, listar_usuarios as obter_usuarios
+from flask import Flask,render_template,request,redirect
+from Backend.usuarios import atualizar_usuario, cadastrar_usuario as salvar_usuario, listar_usuarios as obter_usuarios, buscar_usuario_por_id as obter_usuario_por_id
 
 app = Flask(__name__)
 
@@ -31,6 +31,21 @@ def pagina_cadastrar_usuario():
 def listar_usuarios():
     usuarios = obter_usuarios()
     return render_template("listar_usuarios.html", usuarios=usuarios)
+
+@app.route("/usuarios/editar/<int:id_usuario>", methods=["GET", "POST"])
+def editar_usuario(id_usuario):
+    if request.method == "POST":
+        nome = request.form["nome"]
+        setor = request.form["setor"]
+        contato = request.form["contato"]
+        email = request.form["email"]
+        senha = request.form["senha"]
+
+        atualizar_usuario(id_usuario, nome, setor, contato, email, senha)
+        return redirect("/usuarios/listar")
+    usuario = obter_usuario_por_id(id_usuario)
+    return render_template("editar_usuario.html", usuario=usuario)
+
 
 @app.route("/equipamentos/cadastrar")
 def cadastrar_equipamento():
