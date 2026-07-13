@@ -6,6 +6,32 @@
     <title>Listar Equipamentos</title>
 </head>
 <body>
-    
+    <table>
+    <tr>
+        <th>Nome</th>
+        <th>Setor</th>
+        <th>Descrição</th>
+    </tr>
+
+    {% for equipamento in equipamentos %}
+    <tr>
+        <td>{{ equipamento[1] }}</td>
+        <td>{{ equipamento[2] }}</td>
+        <td>{{ equipamento[3] }}</td>
+
+        <td>
+            <a href="/equipamentos/editar/{{ equipamento[0] }}">
+                Editar
+            </a>
+            <form action="/equipamentos/deletar/{{ equipamento[0] }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este equipamento?')">
+                    Deletar</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+    </table>
+
 </body>
 </html>

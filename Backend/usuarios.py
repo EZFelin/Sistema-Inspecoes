@@ -21,7 +21,6 @@ def cadastrar_usuario(nome, setor, contato, email, senha):
     cursor.close()
     conexao.close()
 
-
 def listar_usuarios():
     conexao = conectar()
 
@@ -38,27 +37,6 @@ def listar_usuarios():
     cursor.close()
     conexao.close()
     return usuarios
-
-def buscar_usuario_por_nome(nome):
-    conexao = conectar()
-    cursor = conexao.cursor()
-
-    cursor.execute("""
-        SELECT nome, setor, email
-        FROM usuarios
-        WHERE nome = %s
-    """, (nome,))
-
-    usuario = cursor.fetchone()
-    if usuario:
-        print(f"Nome: {usuario[0]}")
-        print(f"Setor: {usuario[1]}")
-        print(f"E-mail: {usuario[2]}")
-    else:
-        print("Usuário não encontrado.")
-
-    cursor.close()
-    conexao.close()
 
 def buscar_usuario_por_id(id_usuario):
     conexao = conectar()

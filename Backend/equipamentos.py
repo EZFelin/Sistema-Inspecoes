@@ -1,14 +1,9 @@
-from conexao import conectar
+from Backend.conexao import conectar
 
-def cadastrar_equipamento():
+def cadastrar_equipamento(nome, setor, descricao):
     conexao = conectar()
 
     cursor = conexao.cursor()
-
-    nome = input("Nome: ")
-    setor = input("Setor: ")
-    descricao = input("Descrição: ")
-
 
     cursor.execute(
         """
@@ -28,24 +23,63 @@ def cadastrar_equipamento():
 
 def listar_equipamentos():
     conexao = conectar()
-
     cursor = conexao.cursor()
 
     cursor.execute("""
-        SELECT nome, setor, descricao
+        SELECT id_equipamento, nome, setor, descricao
         FROM equipamentos
-        """)
-    
+        ORDER BY id_equipamento
+    """)
+
     equipamentos = cursor.fetchall()
-    if not equipamentos:
-        print("Nenhum equipamento cadastrado.")
-    else:
-        for equipamento in equipamentos:
-            print(f"Nome: {equipamento[0]}")
-            print(f"Setor: {equipamento[1]}")
-            print(f"Descrição: {equipamento[2]}")
-            print("-" * 20)
 
     cursor.close()
     conexao.close()
 
+    return equipamentos
+
+def buscar_equipamento_por_id(id_equipamento):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute(""" 
+                   SELECT id_equipamento, nome, setor, descricao 
+                   FROM equipamentos
+                   WHERE id_equipamento = %s
+                   """,(id_equipamento,))
+    
+    equipamento = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    return equipamento
+
+def atualizar_equipamento(id_equipamento, nome, setor, descricao):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+                    UPDATE equipamentos
+                    SET nome = %s, setor = %s, descricao = %s
+                    WHERE id_equipamento = %s
+                   """,(nome, setor, descricao,id_equipamento))
+    
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+def deletar_equipamento(id_equipamento):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+                    DELETE FROM equipamentos
+                    WHERE  id_equipamento = %s
+                   """,(id_equipamento,))
+    
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
