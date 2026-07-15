@@ -135,6 +135,22 @@ def deletar_equipamento(id_equipamento):
 
 @app.route("/inspecoes/cadastrar", methods=["GET", "POST"])
 def cadastrar_inspecao():
+    if request.method == "POST":
+        usuario_id = request.form["usuario_id"]
+        equipamento_id = request.form["equipamento_id"]
+        data_inspecao = request.form["data_inspecao"]
+        status = request.form["status"]
+        observacao = request.form["observacao"]
+
+        salvar_inspecao(
+            usuario_id,
+            equipamento_id,
+            data_inspecao,
+            status,
+            observacao
+        )
+
+        return redirect("/inspecoes/listar")
     return render_template("cadastrar_inspecao.html")
 
 

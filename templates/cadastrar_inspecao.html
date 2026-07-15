@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Inspeção</title>
+</head>
+<body>
+
+    <h1>Cadastrar Inspeção</h1>
+
+    <form action="/inspecoes/cadastrar" method="POST">
+
+        <label for="usuario_id">ID do Usuário:</label>
+        <input type="number" id="usuario_id" name="usuario_id" required>
+
+        <br><br>
+
+        <label for="equipamento_id">ID do Equipamento:</label>
+        <input type="number" id="equipamento_id" name="equipamento_id" required>
+
+        <br><br>
+
+        <label for="data_inspecao">Data:</label>
+        <input type="date" id="data_inspecao" name="data_inspecao" required>
+
+        <br><br>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+
+        <br><br>
+
+        <label for="observacao">Observação:</label><br>
+        <textarea id="observacao" name="observacao" rows="4" cols="40"></textarea>
+
+        <br><br>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
+
+</body>
+</html>
