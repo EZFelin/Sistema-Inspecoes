@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Inspeção</title>
+</head>
+<body>
+
+    <h1>Editar Inspeção</h1>
+
+    <form action="/inspecoes/editar/{{ inspecao[0] }}" method="POST">
+
+        <label>Usuário:</label>
+
+        <select name="usuario_id" required>
+
+            {% for usuario in usuarios %}
+
+            <option value="{{ usuario[0] }}"
+                {% if usuario[0] == inspecao[1] %}selected{% endif %}>
+                {{ usuario[1] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>Equipamento:</label>
+
+        <select name="equipamento_id" required>
+
+            {% for equipamento in equipamentos %}
+
+            <option value="{{ equipamento[0] }}"
+                {% if equipamento[0] == inspecao[2] %}selected{% endif %}>
+                {{ equipamento[1] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>Data:</label>
+        <input
+            type="date"
+            name="data_inspecao"
+            value="{{ inspecao[3] }}"
+            required>
+
+        <br><br>
+
+        <label>Status:</label>
+        <input
+            type="text"
+            name="status"
+            value="{{ inspecao[4] }}"
+            required>
+
+        <br><br>
+
+        <label>Observação:</label><br>
+
+        <textarea
+            name="observacao"
+            rows="4"
+            cols="40">{{ inspecao[5] }}</textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</body>
+</html>

@@ -151,21 +151,52 @@ def cadastrar_inspecao():
         )
 
         return redirect("/inspecoes/listar")
-    return render_template("cadastrar_inspecao.html")
+    
+    usuarios = obter_usuarios()
+    equipamentos = obter_equipamentos()
 
+    return render_template("cadastrar_inspecao.html", usuarios=usuarios, equipamentos=equipamentos)
 
 @app.route("/inspecoes/listar")
 def listar_inspecoes():
-    return render_template("listar_inspecoes.html")
-
+    inspecoes = obter_inspecoes()
+    return render_template("listar_inspecoes.html", inspecoes=inspecoes)
 
 @app.route("/inspecoes/editar/<int:id_inspecao>", methods=["GET", "POST"])
 def editar_inspecao(id_inspecao):
-    return render_template("editar_inspecao.html")
 
+    if request.method == "POST":
+        usuario_id = request.form["usuario_id"]
+        equipamento_id = request.form["equipamento_id"]
+        data_inspecao = request.form["data_inspecao"]
+        status = request.form["status"]
+        observacao = request.form["observacao"]
+
+        atualizar_inspecao(
+            id_inspecao,
+            usuario_id,
+            equipamento_id,
+            data_inspecao,
+            status,
+            observacao
+        )
+
+        return redirect("/inspecoes/listar")
+
+    inspecao = obter_inspecao_por_id(id_inspecao)
+    usuarios = obter_usuarios()
+    equipamentos = obter_equipamentos()
+
+    return render_template(
+        "editar_inspecao.html",
+        inspecao=inspecao,
+        usuarios=usuarios,
+        equipamentos=equipamentos
+    )
 
 @app.route("/inspecoes/deletar/<int:id_inspecao>", methods=["POST"])
 def deletar_inspecao(id_inspecao):
+    excluir_inspecao(id_inspecao)
     return redirect("/inspecoes/listar")
 
 if __name__ == "__main__":

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Inspeções</title>
+</head>
+<body>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Usuário</th>
+        <th>Equipamento</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Observação</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for inspecao in inspecoes %}
+    <tr>
+        <td>{{ inspecao[0] }}</td>
+        <td>{{ inspecao[1] }}</td>
+        <td>{{ inspecao[2] }}</td>
+        <td>{{ inspecao[3] }}</td>
+        <td>{{ inspecao[4] }}</td>
+        <td>{{ inspecao[5] }}</td>
+
+        <td>
+            <a href="/inspecoes/editar/{{ inspecao[0] }}">Editar</a>
+
+            <form action="/inspecoes/deletar/{{ inspecao[0] }}"
+                  method="POST"
+                  style="display:inline;">
+
+                <button
+                    type="submit"
+                    onclick="return confirm('Tem certeza que deseja excluir esta inspeção?')">
+
+                    Deletar
+
+                </button>
+
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -10,13 +10,34 @@
 
     <form action="/inspecoes/cadastrar" method="POST">
 
-        <label for="usuario_id">ID do Usuário:</label>
-        <input type="number" id="usuario_id" name="usuario_id" required>
+        <label>Usuário:</label>
+
+        <select name="usuario_id" required>
+
+            {% for usuario in usuarios %}
+
+            <option value="{{ usuario[0] }}">
+                 {{ usuario[0] }} - {{ usuario[1] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
 
         <br><br>
 
-        <label for="equipamento_id">ID do Equipamento:</label>
-        <input type="number" id="equipamento_id" name="equipamento_id" required>
+        <label for="equipamento_id">Equipamento:</label>
+        <select name="equipamento_id" required>
+
+            {% for equipamento in equipamentos %}
+
+            <option value="{{ equipamento[0] }}">
+                {{ equipamento[0] }} - {{ equipamento[1] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
 
         <br><br>
 
@@ -26,7 +47,11 @@
         <br><br>
 
         <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required>
+        <select name="status" required>
+            <option value="Pendente">Pendente</option>
+            <option value="Aprovada">Aprovada</option>
+            <option value="Reprovada">Reprovada</option>
+        </select>
 
         <br><br>
 
