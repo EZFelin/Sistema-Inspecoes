@@ -6,6 +6,9 @@
     <title>Listar Inspeções</title>
 </head>
 <body>
+    <button onclick="history.back()">⬅ Voltar</button>
+    <h1>Lista de Inspeções</h1>
+
     <table>
     <tr>
         <th>ID</th>
@@ -27,7 +30,7 @@
         <td>{{ inspecao[5] }}</td>
 
         <td>
-            <a href="/inspecoes/editar/{{ inspecao[0] }}">Editar</a>
+            <a href="/inspecoes/editar/{{ inspecao[0] }}">✏️ Editar</a>
 
             <form action="/inspecoes/deletar/{{ inspecao[0] }}"
                   method="POST"
@@ -37,7 +40,7 @@
                     type="submit"
                     onclick="return confirm('Tem certeza que deseja excluir esta inspeção?')">
 
-                    Deletar
+                    🗑️ Excluir
 
                 </button>
 

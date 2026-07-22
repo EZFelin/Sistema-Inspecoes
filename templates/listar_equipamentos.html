@@ -7,9 +7,11 @@
 </head>
 <body>
     <button onclick="history.back()">⬅ Voltar</button>
+    <h1>Lista de Equipamentos</h1>
     
     <table>
     <tr>
+        <th>ID</th>
         <th>Nome</th>
         <th>Setor</th>
         <th>Descrição</th>
@@ -17,17 +19,18 @@
 
     {% for equipamento in equipamentos %}
     <tr>
+        <td>{{ equipamento[0] }}</td>
         <td>{{ equipamento[1] }}</td>
         <td>{{ equipamento[2] }}</td>
         <td>{{ equipamento[3] }}</td>
 
         <td>
             <a href="/equipamentos/editar/{{ equipamento[0] }}">
-                Editar
+                ✏️ Editar
             </a>
             <form action="/equipamentos/deletar/{{ equipamento[0] }}" method="POST" style="display:inline;">
                 <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este equipamento?')">
-                    Deletar</button>
+                    🗑️ Excluir</button>
             </form>
         </td>
     </tr>

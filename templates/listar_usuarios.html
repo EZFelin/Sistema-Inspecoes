@@ -7,9 +7,12 @@
 </head>
 <body>
     <button onclick="history.back()">⬅ Voltar</button>
-    
+
+    <h1>Lista de Usuários</h1>
+
    <table>
     <tr>
+        <th>ID</th>
         <th>Nome</th>
         <th>Setor</th>
         <th>Contato</th>
@@ -19,6 +22,7 @@
 
     {% for usuario in usuarios %}
     <tr>
+        <td>{{ usuario[0] }}</td>
         <td>{{ usuario[1] }}</td>
         <td>{{ usuario[2] }}</td>
         <td>{{ usuario[3] }}</td>
@@ -26,11 +30,11 @@
 
         <td>
             <a href="/usuarios/editar/{{ usuario[0] }}">
-                Editar
+                ✏️ Editar
             </a>
             <form action="/usuarios/deletar/{{ usuario[0] }}" method="POST" style="display:inline;">
                 <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
-                    Deletar</button>
+                    🗑️ Excluir</button>
             </form>
         </td>
     </tr>

@@ -5,8 +5,10 @@
     <title>Editar Inspeção</title>
 </head>
 <body>
+    <button onclick="history.back()">⬅ Voltar</button>
 
     <h1>Editar Inspeção</h1>
+    <p>Altere os dados da Inspeção.</p>
 
     <form action="/inspecoes/editar/{{ inspecao[0] }}" method="POST">
 
@@ -18,7 +20,7 @@
 
             <option value="{{ usuario[0] }}"
                 {% if usuario[0] == inspecao[1] %}selected{% endif %}>
-                {{ usuario[1] }}
+                {{ usuario[0] }} - {{ usuario[1] }}
             </option>
 
             {% endfor %}
@@ -35,7 +37,7 @@
 
             <option value="{{ equipamento[0] }}"
                 {% if equipamento[0] == inspecao[2] %}selected{% endif %}>
-                {{ equipamento[1] }}
+                {{ equipamento[0]}} - {{ equipamento[1] }}
             </option>
 
             {% endfor %}
